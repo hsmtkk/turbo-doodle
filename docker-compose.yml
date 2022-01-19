@@ -20,11 +20,7 @@ services:
   nats:
     image: nats:2.7
   unzipper:
-    image: busybox:latest
-    command:
-      - tail
-      - -f
-      - /dev/null
+    image: hsmtkk/turbo-doodle:unzipper
     environment:
       NATS_URL: "nats://nats:4222"
       NATS_SUBJECT: test
