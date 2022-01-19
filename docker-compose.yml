@@ -17,12 +17,12 @@ services:
       - "./metadata.bin:/mnt/metadata.bin:ro"
   nats:
     image: nats:2.7
-  unzipper:
-    image: hsmtkk/turbo-doodle:unzipper
-    environment:
-      NATS_URL: "nats://nats:4222"
-      NATS_SUBJECT: test
-      MINIO_HOST: minio
-      MINIO_PORT: 9000
-      MINIO_ROOT_USER: hogehoge
-      MINIO_ROOT_PASSWORD: fugafuga
+  # unzipper:
+  #   image: hsmtkk/turbo-doodle:unzipper
+  #   environment:
+  #     NATS_URL: "nats://nats:4222"
+  #     NATS_SUBJECT: test
+  #     MINIO_HOST: minio
+  #     MINIO_PORT: 9000
+  #     MINIO_ROOT_USER: hogehoge
+  #     MINIO_ROOT_PASSWORD: fugafuga
