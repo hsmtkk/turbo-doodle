@@ -17,6 +17,8 @@ services:
       - "./metadata.bin:/mnt/metadata.bin:ro"
   nats:
     image: nats:2.7
+    ports:
+      - "4222:4222"
   # unzipper:
   #   image: hsmtkk/turbo-doodle:unzipper
   #   environment:

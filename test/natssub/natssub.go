@@ -13,6 +13,7 @@ func main() {
 		log.Fatalf("failed to connect NATS; %s", err)
 	}
 	defer conn.Close()
+	log.Print("connecting NATS")
 
 	ch := make(chan *nats.Msg)
 	sub, err := conn.ChanSubscribe("test", ch)
@@ -20,6 +21,8 @@ func main() {
 		log.Fatalf("failed to subscribe channel; %s", err)
 	}
 	defer sub.Unsubscribe()
+	log.Print("subscribing test channel")
+
 	for msg := range ch {
 		fmt.Println(string(msg.Data))
 	}
