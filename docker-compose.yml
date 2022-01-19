@@ -3,20 +3,18 @@ version: "3.8"
 services:
   minio:
     image: minio/minio:latest
-    command:
-      - server
-      - /data
-      - --console-address
-      - :9001
+    entrypoint:
+      - /entrypoint.sh
     environment:
       MINIO_ROOT_USER: hogehoge
       MINIO_ROOT_PASSWORD: fugafuga
-      MINIO_NOTIFY_NATS_ENABLE_DEFAULT: on
-      MINIO_NOTIFY_NATS_ADDRESS_DEFAULT: nats:4222
-      MINIO_NOTIFY_NATS_SUBJECT_DEFAULT: test
     ports:
       - "9000:9000"
       - "9001:9001"
+    volumes:
+      - "./entrypoint.sh:/entrypoint.sh:ro"
+      - "./config.json:/mnt/config.json:ro"
+      - "./metadata.bin:/mnt/metadata.bin:ro"
   nats:
     image: nats:2.7
   unzipper:
