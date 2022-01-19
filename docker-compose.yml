@@ -1,0 +1,34 @@
+---
+version: "3.8"
+services:
+  minio:
+    image: minio/minio:latest
+    command:
+      - server
+      - /data
+      - --console-address
+      - :9001
+    environment:
+      MINIO_ROOT_USER: hogehoge
+      MINIO_ROOT_PASSWORD: fugafuga
+      MINIO_NOTIFY_NATS_ENABLE_DEFAULT: on
+      MINIO_NOTIFY_NATS_ADDRESS_DEFAULT: nats:4222
+      MINIO_NOTIFY_NATS_SUBJECT_DEFAULT: test
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+  nats:
+    image: nats:2.7
+  unzipper:
+    image: busybox:latest
+    command:
+      - tail
+      - -f
+      - /dev/null
+    environment:
+      NATS_URL: "nats://nats:4222"
+      NATS_SUBJECT: test
+      MINIO_HOST: minio
+      MINIO_PORT: 9000
+      MINIO_ROOT_USER: hogehoge
+      MINIO_ROOT_PASSWORD: fugafuga
