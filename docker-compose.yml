@@ -19,12 +19,13 @@ services:
     image: nats:2.7
     ports:
       - "4222:4222"
-  # unzipper:
-  #   image: hsmtkk/turbo-doodle:unzipper
-  #   environment:
-  #     NATS_URL: "nats://nats:4222"
-  #     NATS_SUBJECT: test
-  #     MINIO_HOST: minio
-  #     MINIO_PORT: 9000
-  #     MINIO_ROOT_USER: hogehoge
-  #     MINIO_ROOT_PASSWORD: fugafuga
+  unzipper:
+    image: hsmtkk/turbo-doodle:unzipper
+    environment:
+      NATS_HOST: nats
+      NATS_PORT: 4222
+      NATS_CHANNEL: test
+      MINIO_HOST: minio
+      MINIO_PORT: 9000
+      MINIO_ACCESS: hogehoge
+      MINIO_SECRET: fugafuga

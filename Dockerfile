@@ -11,4 +11,3 @@ FROM gcr.io/distroless/base-debian11 AS runtime
 COPY --from=builder /opt/turbo-doodle /usr/local/bin/turbo-doodle
 
 ENTRYPOINT ["/usr/local/bin/turbo-doodle"]
-
